@@ -9,5 +9,6 @@ namespace WebAPI_QuanLyHocSinh.Dto
         public int StudentId { get; set; }
         public decimal? Gpa { get; set; }
 
+
     }
 }

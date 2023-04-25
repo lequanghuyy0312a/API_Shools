@@ -77,6 +77,14 @@ namespace WebAPI_QuanLyHocSinh.Controllers
             return Ok(students);
         }
        
+        // Get by studentId
+        [HttpGet("{studentId}")]
+        [ProducesResponseType(200)]
+        public IActionResult GetByStudentId(int studentId)
+        {
+            var student = _mapper.Map<StudentDto>(_studentRepository.GetStudent(studentId));
+            return Ok(student);
+        }
         // Get by Name
         [HttpGet("{name}/nameStudents")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Student>))]
@@ -84,8 +92,6 @@ namespace WebAPI_QuanLyHocSinh.Controllers
         {
             var students = _mapper.Map<List<StudentDto>>(_studentRepository.GetStudentsByName(name));
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
 
             return Ok(students);
         }

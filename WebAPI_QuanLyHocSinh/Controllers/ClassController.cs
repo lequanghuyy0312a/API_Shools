@@ -28,10 +28,18 @@ namespace WebWebAPI_QuanLyHocSinh.Controllers
             var classes = _mapper.Map<List<ClassDto>>(_classRepository.GetAllClasses());           
             return Ok(classes);
         }
+        // Get by classId
+        [HttpGet("{classId}")]
+        [ProducesResponseType(200)]
+        public IActionResult GetByClassId(int classId)
+        {
+            var _class = _mapper.Map<ClassDto>(_classRepository.GetClassById(classId));
+            return Ok(_class);
+        }
         // Get by class
         [HttpGet("{classId}/students")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Student>))]
-        public IActionResult GetByClassId(int classId)
+        public IActionResult GetStudentByClassId(int classId)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -104,7 +112,7 @@ namespace WebWebAPI_QuanLyHocSinh.Controllers
             if (!_classRepository.ClassExists(classId))
                 return NotFound();
 
-            var classToDelete = _classRepository.GetClass(classId);
+            var classToDelete = _classRepository.GetClassById(classId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

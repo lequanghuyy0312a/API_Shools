@@ -5,7 +5,7 @@ namespace WebAPI_QuanLyHocSinh.Interfaces
     public interface ISubjectRepository
     {
         ICollection<Subject> GetAllSubjects();
-        Subject GetSubject(int subjectId);
+        Subject GetSubjectById(int subjectId);
 
         bool SubjectExists(int subjectId);
         bool CreateSubject(Subject subject);

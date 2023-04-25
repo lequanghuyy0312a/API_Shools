@@ -6,7 +6,7 @@ namespace WebAPI_QuanLyHocSinh.Interfaces
     {
         ICollection<Course> GetAllCourses();
 
-        Course GetCourse(int courseId);
+        Course GetCourseById(int courseId);
 
 
         bool CourseExists(int courseId);

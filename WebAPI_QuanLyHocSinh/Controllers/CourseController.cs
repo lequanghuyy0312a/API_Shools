@@ -27,7 +27,14 @@ namespace WebAPI_QuanLyHocSinh.Controllers
             var courses = _mapper.Map<List<CourseDto>>(_courseRepository.GetAllCourses());         
             return Ok(courses);
         }
-      
+        // Get by id
+        [HttpGet("{courseId}")]
+        [ProducesResponseType(200)]
+        public IActionResult GetById(int courseId)
+        {
+            var _course = _mapper.Map<CourseDto>(_courseRepository.GetCourseById(courseId));
+            return Ok(_course);
+        }
         //Create
         [HttpPost]
         [ProducesResponseType(200)]
@@ -95,7 +102,7 @@ namespace WebAPI_QuanLyHocSinh.Controllers
             if (!_courseRepository.CourseExists(courseId))
                 return NotFound();
 
-            var CourseToDelete = _courseRepository.GetCourse(courseId);
+            var CourseToDelete = _courseRepository.GetCourseById(courseId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

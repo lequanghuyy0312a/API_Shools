@@ -32,6 +32,15 @@ builder.Services.AddCors(options => options.AddDefaultPolicy
 builder.Services.AddDbContext<db_schoolsContext>(option => {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+var MyAllowSpecificOrigins = "myAllowSpecificOrigins";
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy(name: MyAllowSpecificOrigins,
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:7219").AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -49,5 +58,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors("myAllowSpecificOrigins");
 app.Run();

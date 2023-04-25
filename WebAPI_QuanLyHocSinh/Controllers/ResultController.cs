@@ -31,6 +31,15 @@ namespace WebAPI_QuanLyHocSinh.Controllers
 
             return Ok(Results);
         }
+
+        // Get by id
+        [HttpGet("{resultId}")]
+        [ProducesResponseType(200)]
+        public IActionResult GetById(int resultId)
+        {
+            var _result = _mapper.Map<ResultDto>(_resultRepository.GetResultById(resultId));
+            return Ok(_result);
+        }
         //Add full students
         [HttpPost("results")]
         [ProducesResponseType(200)]
@@ -92,7 +101,7 @@ namespace WebAPI_QuanLyHocSinh.Controllers
             if (!_resultRepository.ResultExists(ResultId))
                 return NotFound();
 
-            var ResultToDelete = _resultRepository.GetResult(ResultId);
+            var ResultToDelete = _resultRepository.GetResultById(ResultId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

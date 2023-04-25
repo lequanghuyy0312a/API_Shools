@@ -45,7 +45,7 @@ namespace WebAPI_QuanLyHocSinh.Repository
             var allStudents = _context.Results.AsQueryable();
             if (!string.IsNullOrEmpty(classId.ToString())) 
             {
-                allStudents = allStudents.Include(s => s.Student).Where(s => s.Student.ClassId == classId);
+                allStudents = allStudents.Include(s => s.Student).Where(s => s.Student.ClassId == classId).OrderByDescending(c=>c.Gpa);
             }
 
             var result = allStudents.Select(c => new StudentResultModel
@@ -72,7 +72,9 @@ namespace WebAPI_QuanLyHocSinh.Repository
             {
                 StudentId   = c.StudentId,
                 ClassName   = c.Student.Class.Name,
-                RankName    = c.Rank.Name.ToString(),
+
+
+                RankName = c.Rank.Name.ToString(),
                 StudentName = c.Student.Name.ToString(),
 
                 GPA = (decimal)c.Gpa

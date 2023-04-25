@@ -5,7 +5,7 @@ namespace WebAPI_QuanLyHocSinh.Interfaces
     public interface IClassRepository
     {
         ICollection<Class> GetAllClasses();
-        Class GetClass(int classId);
+        Class GetClassById(int classId);
         ICollection<Student> GetStudentsByClassId(int classId);
 
 

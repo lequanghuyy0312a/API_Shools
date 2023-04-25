@@ -23,7 +23,7 @@ namespace WebAPI_QuanLyHocSinh.Repository
             return _context.Classes.OrderBy(c=>c.ClassId).ToList();
         }
         // get 1
-        public Class GetClass(int classId)
+        public Class GetClassById(int classId)
         {
             return _context.Classes.Where(c => c.ClassId == classId).FirstOrDefault();
         }

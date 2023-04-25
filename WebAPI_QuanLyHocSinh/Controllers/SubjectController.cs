@@ -3,6 +3,7 @@ using WebAPI_QuanLyHocSinh.Interfaces;
 using WebAPI_QuanLyHocSinh.Context;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI_QuanLyHocSinh.Repository;
 
 namespace WebAPI_QuanLyHocSinh.Controllers
 {
@@ -25,6 +26,14 @@ namespace WebAPI_QuanLyHocSinh.Controllers
         {
             var subjects = _mapper.Map<List<SubjectDto>>(_subjectRepository.GetAllSubjects());       
             return Ok(subjects);
+        }
+        // Get by by id
+        [HttpGet("{subjectId}")]
+        [ProducesResponseType(200)]
+        public IActionResult GetBySubjectID(int subjectId)
+        {
+            var _subject = _mapper.Map<SubjectDto>(_subjectRepository.GetSubjectById(subjectId));
+            return Ok(_subject);
         }
         //Create
         [HttpPost]
@@ -84,7 +93,7 @@ namespace WebAPI_QuanLyHocSinh.Controllers
             if (!_subjectRepository.SubjectExists(subjectId))
                 return NotFound();
 
-            var subjectToDelete = _subjectRepository.GetSubject(subjectId);
+            var subjectToDelete = _subjectRepository.GetSubjectById(subjectId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

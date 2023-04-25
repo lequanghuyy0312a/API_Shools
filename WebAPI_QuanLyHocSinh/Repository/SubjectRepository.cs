@@ -22,7 +22,7 @@ namespace WebAPI_QuanLyHocSinh.Repository
             return _context.Subjects.OrderBy(c=>c.SubjectId).ToList();
         }
         // take 1
-        public Subject GetSubject(int subjectId)
+        public Subject GetSubjectById(int subjectId)
         {
             return _context.Subjects.Where(c => c.SubjectId == subjectId).FirstOrDefault();
         }

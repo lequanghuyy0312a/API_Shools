@@ -1,7 +1,5 @@
-﻿
-using WebAPI_QuanLyHocSinh.Interfaces;
+﻿using WebAPI_QuanLyHocSinh.Interfaces;
 using WebAPI_QuanLyHocSinh.Context;
-using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI_QuanLyHocSinh.Repository
 {
@@ -60,9 +58,9 @@ namespace WebAPI_QuanLyHocSinh.Repository
             return Save();
         }
         // get 1
-        public Result GetResult(int ResultId)
+        public Result GetResultById(int resultId)
         {
-            return _context.Results.Where(c => c.ResultId == ResultId).FirstOrDefault();
+            return _context.Results.Where(c => c.ResultId == resultId).FirstOrDefault();
         }
         
         public bool RemoveAllResults(List<Result> removeResult)

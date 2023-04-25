@@ -6,7 +6,7 @@ namespace WebAPI_QuanLyHocSinh.Interfaces
     public interface IResultRepository
     {
         ICollection<Result> GetAllResults();
-        Result GetResult(int resultId);
+        Result GetResultById(int resultId);
 
         bool ResultExists(int resultId);
 
